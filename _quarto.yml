@@ -1,6 +1,8 @@
 project:
   type: website
 
+output-dir: docs
+
 website:
   title: "Exploring Photoreceptor Contributions to Leaf Growth: Examining the Effect of Phytochrome B"
   navbar:
