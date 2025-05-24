@@ -1,0 +1,261 @@
+---
+title: "Exploring Photoreceptor Contributions to Leaf Growth: Examining the Effect of Phytochrome B"
+format: html
+bibliography: "references.bib"
+csl: "apa-5th-edition.csl"
+---
+
+# Introduction
+
+Light is a key environmental signal that influences nearly every aspect of plant development, from germination to flowering. Plants perceive light through several types of photoreceptors that react to specific wavelengths ranging from blue light to far-red light. Examining the *Arabidopsis thaliana* as it is a common model plant used in science. In *A. thaliana*, the two major photoreceptor families are phytochromes and cryptochromes, within these families the key members include PHYA, PHYB, CRY1, and CRY2. These photoreceptors regulate transcriptional networks such as Phytochrome-Interacting Factors (PIFs) influencing traits such as hypocotyl elongation,flowering time, modulated gene expression and overall plant growth[@Leivar2011]. Phytochromes were the first photosensory receptor discovered in *A. thaliana* and are involved in the sensing of red to far-red light. Phytochrome A(PHYA) is the main receptor involved in far-red light responses such as germination, while Phytochrome B(PHYB) is involved in red and full spectra light response such as shade avoidance and determining hypocotyl length. Cyrptochromes are blue light photoreceptors such as Cryptochrome 1(CRY1) involved in hypocotyl elongation and Cryptochrome 2(CRY2) that regulates flowering time.
+
+However, the specific contributions of each photoreceptor to leaf morphology have not been fully dissected. Leaf morphology in this case is a benchmark to measure photosynthetic efficiency and its relationship to its photoreceptors, more specifically the petiole to lamina relationship[@Li2022]. Understanding which photoreceptor most strongly promotes leaf expansion could provide insight into how plants optimize photosynthesis and resource allocation under different light environments. Lastly, if we use gene expression analysis, we are able to investigate the signal transduction pathways that are triggered by the photoreceptors we are examining and its direct impact on physiological features[@Whitelam1997].
+
+### Question
+This study aims to determine which photoreceptor contributes most significantly to leaf growth in *A. thaliana* by analyzing the lamina-to-petiole (L/P) ratio in loss-of-function photoreceptor mutants. Additionally, how can we propose an experimental design to measure specific gene expression levels as a means to explore the underlying signal transduction pathways activated by these photoreceptors. 
+
+### Hypothesis
+Phytochrome B (PHYB) plays a dominant role in promoting light-mediated leaf growth in *Arabidopsis thaliana* by regulating gene networks involved in physiological features.
+
+------------------------------------------------------------------------
+
+# Methods
+
+### Data Collection
+To determine how different photoreceptors influence leaf morphology in *Arabidopsis thaliana*, a comparative analysis was conducted using loss-of-function photoreceptor mutants. This involves measuring the lamina-to-petiole (L/P) ratio as a determinate for leaf growth and light sensitivity. The dataset used for this analysis comes from the Department of Biotechnology and Life Sciences at the University of Insurbia in Varese, Italy[@Beatrice2022]. They grew *A. thaliana* Col-8 wild-type (WT) seeds and seeds of loss-of-function photoreceptor mutant lines including PHYA, PHYB, CRY1, CRY2 that were purchased from the Eurasian Arabidopsis stock center(NASC). In their research they measured various light treatments, but due to our focus we will be focusing on the high-pressure sodium (HPS) lamp treatment as HPS lamps are considered the standard for closed environment plant production. These plants were grown under the HPS light at: $120 \mu\text{mol m}^{-2}\text{ s}^{-1}$ until the six-leaf stage of development was reach at around 17 days after sowing(DAS) and were grown for 23 days total. With the use of ImageJ the fifth and sixth rosette leaves were measured and L/P ratio is calculated. Multiple seeds of WT and mutants were planted and L/P ratio was measured within all of them.
+
+### Statistical Modeling
+
+##### Base Visualization
+The dataset collected above was initially visualized using boxplots to assess the distribution and variance across loss-of-function photoreceptor mutants (@fig-leaf-ratio). This visualization shows us that the loss-of-function PHYB mutant has the lowest leaf growth (L/P ratio) while the other mutant are generally similar as they have slightly greater leaf growth compaed to the WT. 
+
+```{r fig-leaf-ratio, fig.cap="Lamina-to-Petiole(L/P) ratios across loss-of-function photoreceptor mutants in *Arabadopsis thaliana*"}
+#| message: false
+
+library(tidyverse)
+base_d <- read_csv("data/revised_data.csv")
+
+# Base Viz
+base_viz <- ggplot(data = base_d,
+                   aes(x = Mutant,
+                       y = `L/P`,
+                       color = Mutant)) +
+  scale_color_viridis_d() +
+  geom_boxplot()
+base_viz
+```
+
+##### Linear Model
+Linear model is used here to test whether any of the photoreceptor mutants differ significantly from the wild type. A categorical model was created with many levels to test this: $$log(L/P_i) = \beta_0 + \sum_{j=1}^{k} \beta_j \cdot \text{Mutant}_{ij} + \varepsilon_i$$
+
+The model was ran through assumption checks to verify the validity of the model in a biological system (@fig-assumptions). Through assumption checks and breaking down each plots separately it can verify the validity on different levels of the model. First, the posterior predictive check shows that observed data is in line with the model-predicted data. The next check that majorly altered the model after first run of assumptions is linearity, prior to log transforming the response variable in the linear model the linearity assumptions was off of the horizontal line zero. Following the log transformation the linearity assumption was the passed with fitted values along the reference line as seen in the assumption check. The new assumption check shows the log transformation that was done to the model's response variable helped the nonlinearity of the model. The next assumption check is homogeneity of variance to test the model's variance, we see the line is extremely flat as well as there is symmetry of points across the reference line. Influence Observations shows some potential issues with points near the outer distance, but due to small residuals their influence is tolerable. Lastly, in the normality of residuals plots a quantile-quantile (Q-Q) plot is used to test if residuals are normal and can visualize the points along the line with little variation at the positive end.
+
+After the assumptions were met, results of the linear model can be interpreted wihtin this study(@tbl-lm). Interpreting it revealed that PHYB mutants show a significant reduction in L/P ratio in the estimate as well as being statistically significant due to p-value is less than 0.05. Also, seen in CRY2 on a lesser scale showing less reduction in leaf growth and less significance. The standard error in the table indicates the uncertainty around the estimate, which is not heavily prevalent in our model as shown in the results of the model.
+
+```{r fig-assumptions, fig.cap="Assumptions of Categorical Linear Model"}
+#| warning: false
+#| message: false
+
+# Base Model 
+library(performance)
+library(broom)
+library(car)
+
+base_d <- base_d |>
+  mutate(Mutant = factor(Mutant, levels = c("WT", setdiff(unique(Mutant), "WT"))))
+lm_model <-  lm(log(`L/P`) ~ Mutant, data = base_d)
+
+# Assumptions 
+check_model(lm_model) |> plot()
+```
+
+```{r tbl-lm-1, tbl.cap="Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*"}
+#| warning: false
+#| message: false
+
+library(knitr)
+library(scales)
+
+tidy(lm_model)[, c("term","estimate", "std.error", "p.value")] |>
+  mutate(
+    p.value = ifelse(p.value < 0.001, format.pval(p.value, digits = 2, eps = .Machine$double.eps), round(p.value, 3))
+  ) |>
+  rename(
+    Photoreceptor  = term,
+    `Estimate` = estimate,
+    `Std. Error` = std.error,
+    `P-value` = p.value
+  ) |>
+  kable(digits = 3, caption = "Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*")
+```
+
+##### Post-Hoc Test (Tukey's Test)
+As a post-hoc test, Tukey’s Test was preformed on the linear model to create pairwise comparisons between different levels of mean mutant photoreceptors and the mean WT, this determines the significant difference between the conditions(@fig-tukeys). In this case we will focus on the comparisons between mutant photoreceptors and WT as the will show us the difference of the mutant means compared to natural growth. In the visualization the PHYB mutant has the greatest difference in mean levels, with CRY1 being the next greatest but no where near the amount of PHYB. The rest of the photoreceptors compared to the WT have no significant difference on leaf growth, thus meaning there is not enough statistical difference to verify their difference on leaf growth.
+
+```{r fig-tukeys, fig.cap="Pairwise Comparisons of Leaf Growth Across Photoreceptor Mutants in Arabidopsis thaliana"}
+Anova_mod <- aov(lm_model)
+
+Tukey_mod <- TukeyHSD(x = Anova_mod, "Mutant", conf.level = 0.95)
+
+my_colors <- c("navy", "red", "orange", "navy", "black", "black", "black", "black", "black", "black")
+par(mar=c(5,6,4,1)+.1)
+
+Tukey_plot <- plot(Tukey_mod, las=1, col=my_colors)
+```
+
+#### AIC Model Averaging (Final Visualization)
+
+The final step taken to reach our best visualization was comparing and averaging different models to create a better trade-off between model fit and complexity.The Akaike Information Criterion (AIC) model averaging is used to produce the final visualization representing the effect of loss-of-function photoreceptor mutant  on leaf growth (@fig-AIC). Models plausible in this case are the null model or the mean only model and the linear model created previously. Examining the AIC values that indicate the “best model” were skipped due to the circumstances of this study, small amount of plausible models, and model averaging was proceeded which accounts for uncertainty while creating more reliable measurements to create one model. In the visualization the original observed data was plotted to reflect the accuracy of the model, we can see that the estimated points are similar to the observed points. These similar points means it shows the same results as the original data visualization, of PHYB being the most effective photoreceptor in reducing leaf growth compared to the other mutant photoreceptors.
+
+```{r fig-AIC, fig.cap="Observed and AIC Model-Averaged Predictions of Leaf Growth (L/P ratio) Across Photoreceptor Mutants in *Arabadopsis thaliana*"}
+#| warning: false
+#| message: false
+#| results: hide
+library(AICcmodavg)
+library(MuMIn)
+
+phyto_lm <- lm(`L/P` ~ Mutant, data = base_d)
+phyto_mean <- lm(`L/P` ~ 1, data = base_d)
+
+aictab(list(phyto_lm, phyto_mean), 
+       c("linear model", "mean only"),
+       second.ord = FALSE)
+
+mod_list <- list(phyto_mean, phyto_lm)
+mod_names <- c("mean only", "linear model")
+
+mod_names <- 0:4
+
+avg_model <- model.avg(mod_list)
+
+
+new_data <- data.frame(Mutant = unique(base_d$Mutant))
+preds <- predict(avg_model, newdata = new_data, se.fit = TRUE)
+
+pred_df <- data.frame(
+  Mutant = new_data$Mutant,
+  fit = preds$fit,
+  lower = preds$fit - 1.96 * preds$se.fit,
+  upper = preds$fit + 1.96 * preds$se.fit)
+
+aic_plot <- ggplot(pred_df, aes(x = Mutant, y = fit, color = "Predicted")) +
+  geom_point(size = 3) +
+  geom_errorbar(aes(ymin = lower, ymax = upper, color = "Predicted"), width = 0.2) +
+  geom_jitter(data = base_d, aes(x = Mutant, y = `L/P`, color = "Observed"), 
+              width = 0.05, alpha = 0.5, size = 2) +
+  scale_color_manual(name = "Data Type",
+                     values = c("Observed" = "skyblue", "Predicted" = "grey40")) +
+   labs(y = "L/P Ratio", x = "Mutant") +
+  theme_minimal()
+aic_plot
+```
+
+------------------------------------------------------------------------
+
+# Gene Expression Analyisis
+
+##### Questions
+Questioning the effect of mutant photoreceptors on a physiological factor that is not entierely discovered, leaf growth, but what about the genotypical impact? Specifically in Phytochrome B as it has the highest impact on leaf growth.
+
+##### Data Collection
+Data retrieved from Shanghai University in Shanghai, China where scientist measured WT and PHYB mutant seedlings of *A. thaliana* under $60 \mu\text{mol m}^{-2}\text{ s}^{-1}$ red light for 4.5 days as PHYB is the main receptor in red light responses[@GSE101875]. mRNA is then sequenced from each sample and the genes regulated by PHYB are analyzed by read counts and normalized expression levels (Reads Per Kilobase per Million mapped reads (RPKM)) to present us with the dataset.
+
+
+##### Methods (limma)
+limma is an r package from Bioconductor used for the analysis of gene expression data[@ritchie2015limma]. Specifically within this study, limma is used to assess differential expression between WT and PHYB to determine the significantly differential expressed genes[@phipson2016robust]. MA plot is the common way to visualize the results of differential gene expression analysis, where M signifies the log ratio of how much a gene’s expression has changed between the two treatments and A represent the mean average gene expression level across all samples. In the visualization the blue circles represent the genes that are classified significantly different, grey points are likely background genes, and black points are not significantly differential expressed with all groups based on adjusted p-values (@fig-limma). With the visualization comparison of the spread of genes begins at low expression levels and high expression levels, giving us more insight on the significant genes impacted. Overall, the visualization determined that PHYB affects gene expression in both directions by likely reshaping the regulatory networks and biological mechanisms.
+
+```{r fig-limma, fig.cap="MA Plot: Differential Expression in PHYB Mutant vs. Wild Type in *Arabidopsis thaliana*"}
+#| warning: false
+#| message: false
+#| results: hide
+
+library(limma)
+
+exprs <- read.csv("data/expression_matrix.csv", header=TRUE, row.names=1)
+exprs <- exprs[, c("RPKM_PhyB", "RPKM_WT")]
+colnames(exprs) <- c("PhyB", "WT")
+exprs <- as.matrix(exprs)
+
+metadata <- data.frame(
+  Sample = c("PhyB", "WT"),
+  Genotype = c("PhyB", "WT"),
+  Ratio = c(NA, NA))  # no phenotype data
+rownames(metadata) <- metadata$Sample
+metadata$Genotype <- factor(metadata$Genotype)
+exprs <- log2(exprs + 1)
+
+design <- model.matrix(~ 0 + Genotype, data=metadata)
+colnames(design) <- levels(metadata$Genotype)
+
+fit <- lmFit(exprs, design)
+contrast.matrix <- makeContrasts(PhyB_vs_WT = PhyB - WT, levels=design)
+fit2 <- contrasts.fit(fit, contrast.matrix)
+
+results <- fit2$coefficients
+
+log2fc <- log2(exprs[, "PhyB"]) - log2(exprs[, "WT"])
+results <- data.frame(
+  Gene = rownames(exprs),
+  log2FoldChange = log2fc
+)
+head(results[order(-abs(results$log2FoldChange)), ])
+
+A <- (log2(exprs[, "PhyB"]) + log2(exprs[, "WT"])) / 2
+M <- log2(exprs[, "PhyB"]) - log2(exprs[, "WT"])
+limma_plot <- plot(A, M, pch=16, cex=0.6, main="MA Plot of PhyB constrasted to WT", 
+     xlab="Average log2 Expression (A)", ylab="log2 Fold Change (M)",
+     col=ifelse(abs(M) > 1, "gray", "black"))
+abline(h=0, col="red")
+highlight_genes <- abs(M) > 2
+points(A[highlight_genes], M[highlight_genes], col="skyblue", pchisq=16, cex=1.2)
+
+limma_plot
+```
+
+------------------------------------------------------------------------
+
+# Results
+
+##### Phenotypic Data
+In the phenotypic data analysis where a categorical linear model was used, alongside post-hoc tests consisting of Tukeys Test while also applying model selection criterion AIC, a lot was discovered about the loss-of-function photoreceptor mutant effect on leaf growth in *Arabidopsis thaliana*. After the model and model selection processes it can be determined that PHYB mutants showed a significant reduction in lamina-to-petiole ratio compared to the wild type seedlings confirmed by the p-value that is less than 0.01. It was also discovered that CRY1 may exhibit difference between the WT after post-hoc tests and model averaging, while CRY2 and PHYA are not significantly different to the WT if looking at the visualizations plus it is confirmed by the p-values. Tukey’s Test confirmed that PHYB is the most divergent mutant photoreceptor and CRY1 is the next most divergent while CRY2 and PHY1 are not divergent from the WT.
+
+##### Assumptions
+During these models diagnostics test were ran and assumptions were confirmed, such as the residuals (Q-Q plot) which appeared normally distributed or the AIC values showing that categorical linear model is highly favored in model fit and complexity over the null model.
+
+##### Gene Expression Data
+When analyzing gene expression data, specifically in the MA plot, it shows clear differential expression between PHYB and WT. Gene Expression data allowed for the discovery of which specific genes are significant when PHYB is not present and the magnitude of the difference to WT(positive or negative), as well as the average they are expressed amongst both condition infering impact of significant gene.
+
+---
+
+# Discussion 
+The study was aimed to dissect the contributions of individual photoreceptors to leaf morphology. Overall, the data from the study strongly supports the hypothesis that PHYB positively regulates leaf growth in *A. thaliana* measured by lamina-to-petiole ratio,seen in linear model, model averaging, and post-hoc tests. In contrast, CRY2 and PHYA do not contribute significantly, while CRY1 may play a minor role in leaf growth. CRY1’s modest statistically significant decrease in L/P ratio aligns with the known interactions between cryptochromes and phytochromes signaling in leaf expansion(@Whitelam1997). These interactions are the described as the balance of blue and red light for influence of whether a leaf expands broadly or if the petiole elongate, due to photoreceptor pathways converge on shared transcription factors(PIFs or growth-regulated hormones) to create coordinated developmental outcomes.
+
+The gene expression analysis of PHYB regulated genes supported the phenotypic data we discovered. PHYB had multiple significantly expressed genes compared to the WT, most likely due to the altered expression pattern of PIF regulated genes and hormone signaling in PHYB mutants. The gene expression analysis highlights the loss-of-function PHYB is likely impacting a mechanism for morphological changes rather than a direct physiological change as there is both up regulation and down regulation of the differently expressed genes (DEGs). This agrees with the model of PHYB as a key role in hormone and light signaling in leaf development(@Leivar2011). Differential expression data analysis combined with the physiological linear model suggest the role of PHYB in multiple downstream genes that are altered in PHYB’s absences.
+
+---
+
+# Conclusion & Further Exploration
+The investigation of the *Arabidopsis thaliana* loss-of-function photoreceptor mutants demonstrate that PHYB plays a major role in regulation of leaf growth under light conditions, proven by the significantly reduced lamina-to-petiole ratio. The subtle significance of the CRY1 mutant suggests that while CRY1 may contribute to plant development, its role in leaf growth is minor or reduced by other pathways. Utility of limma used to identify differently expressed genes (DEGs) associated with PHYB and discovered a significant differences in DEGs between PHYB and WT.
+
+If we were able to combine the two forms of data we collected, physiological and genotypical, we would be able to explore more about the connection between these DEGs and key physiological traits such as leaf growth. For further exploration an experiment can be designed where L/P ratio, hormone presences(auxin, gibberellins, and cytokinins) and gene expression in mutant *A. thaliana* mutant photoreceptors are all measured an analyzed. Another adjustment that can be done to understand PHYB affects more mechanistically is the use of double mutants such as CRY1PHYB, as we know that there are strong interactions between cryptochromes and phytochromes. With this data more accurate models can be created using mixed models or generalized linear models to better understand the mechanism that PHYB impact. This also opens up the door to more options in limma for visualization, such as a volcano plot created to show correlation between top DEGs and physiological measurements. Overall, this experiment will open up the conversation more to the impacts of photoreceptors on other photoreceptors and continue to give us more explanation of the Phytochrome B promoting pathway in *A. thaliana* that impacts hormones, gene expression, other receptors, and etc.
+
+
+```{r tbl-lm, tbl.cap="Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*"}
+#| warning: false
+#| message: false
+
+library(knitr)
+library(scales)
+
+tidy(lm_model)[, c("term","estimate", "std.error", "p.value")] |>
+  mutate(
+    p.value = ifelse(p.value < 0.001, format.pval(p.value, digits = 2, eps = .Machine$double.eps), round(p.value, 3))
+  ) |>
+  rename(
+    Photoreceptor  = term,
+    `Estimate` = estimate,
+    `Std. Error` = std.error,
+    `P-value` = p.value
+  ) |>
+  kable(digits = 3, caption = "Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*")
+```

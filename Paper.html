@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Exploring Photoreceptor Contributions to Leaf Growth: Examining the Effect of Phytochrome B</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="Paper_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Paper_files/libs/quarto-html/quarto.js"></script>
+<script src="Paper_files/libs/quarto-html/popper.min.js"></script>
+<script src="Paper_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Paper_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Paper_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Paper_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Paper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exploring Photoreceptor Contributions to Leaf Growth: Examining the Effect of Phytochrome B</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Light is a key environmental signal that influences nearly every aspect of plant development, from germination to flowering. Plants perceive light through several types of photoreceptors that react to specific wavelengths ranging from blue light to far-red light. Examining the <em>Arabidopsis thaliana</em> as it is a common model plant used in science. In <em>A. thaliana</em>, the two major photoreceptor families are phytochromes and cryptochromes, within these families the key members include PHYA, PHYB, CRY1, and CRY2. These photoreceptors regulate transcriptional networks such as Phytochrome-Interacting Factors (PIFs) influencing traits such as hypocotyl elongation,flowering time, modulated gene expression and overall plant growth<span class="citation" data-cites="Leivar2011">(<a href="#ref-Leivar2011" role="doc-biblioref">Leivar &amp; Monte, 2011</a>)</span>. Phytochromes were the first photosensory receptor discovered in <em>A. thaliana</em> and are involved in the sensing of red to far-red light. Phytochrome A(PHYA) is the main receptor involved in far-red light responses such as germination, while Phytochrome B(PHYB) is involved in red and full spectra light response such as shade avoidance and determining hypocotyl length. Cyrptochromes are blue light photoreceptors such as Cryptochrome 1(CRY1) involved in hypocotyl elongation and Cryptochrome 2(CRY2) that regulates flowering time.</p>
+<p>However, the specific contributions of each photoreceptor to leaf morphology have not been fully dissected. Leaf morphology in this case is a benchmark to measure photosynthetic efficiency and its relationship to its photoreceptors, more specifically the petiole to lamina relationship<span class="citation" data-cites="Li2022">(<a href="#ref-Li2022" role="doc-biblioref">Li et al., 2022</a>)</span>. Understanding which photoreceptor most strongly promotes leaf expansion could provide insight into how plants optimize photosynthesis and resource allocation under different light environments. Lastly, if we use gene expression analysis, we are able to investigate the signal transduction pathways that are triggered by the photoreceptors we are examining and its direct impact on physiological features<span class="citation" data-cites="Whitelam1997">(<a href="#ref-Whitelam1997" role="doc-biblioref">Whitelam &amp; Devlin, 1997</a>)</span>.</p>
+<section id="question" class="level3">
+<h3 class="anchored" data-anchor-id="question">Question</h3>
+<p>This study aims to determine which photoreceptor contributes most significantly to leaf growth in <em>A. thaliana</em> by analyzing the lamina-to-petiole (L/P) ratio in loss-of-function photoreceptor mutants. Additionally, how can we propose an experimental design to measure specific gene expression levels as a means to explore the underlying signal transduction pathways activated by these photoreceptors.</p>
+</section>
+<section id="hypothesis" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis">Hypothesis</h3>
+<p>Phytochrome B (PHYB) plays a dominant role in promoting light-mediated leaf growth in <em>Arabidopsis thaliana</em> by regulating gene networks involved in physiological features.</p>
+<hr>
+</section>
+</section>
+<section id="methods" class="level1">
+<h1>Methods</h1>
+<section id="data-collection" class="level3">
+<h3 class="anchored" data-anchor-id="data-collection">Data Collection</h3>
+<p>To determine how different photoreceptors influence leaf morphology in <em>Arabidopsis thaliana</em>, a comparative analysis was conducted using loss-of-function photoreceptor mutants. This involves measuring the lamina-to-petiole (L/P) ratio as a determinate for leaf growth and light sensitivity. The dataset used for this analysis comes from the Department of Biotechnology and Life Sciences at the University of Insurbia in Varese, Italy<span class="citation" data-cites="Beatrice2022">(<a href="#ref-Beatrice2022" role="doc-biblioref">Beatrice, Chiatante, Scippa, &amp; Montagnoli, 2022</a>)</span>. They grew <em>A. thaliana</em> Col-8 wild-type (WT) seeds and seeds of loss-of-function photoreceptor mutant lines including PHYA, PHYB, CRY1, CRY2 that were purchased from the Eurasian Arabidopsis stock center(NASC). In their research they measured various light treatments, but due to our focus we will be focusing on the high-pressure sodium (HPS) lamp treatment as HPS lamps are considered the standard for closed environment plant production. These plants were grown under the HPS light at: <span class="math inline">\(120 \mu\text{mol m}^{-2}\text{ s}^{-1}\)</span> until the six-leaf stage of development was reach at around 17 days after sowing(DAS) and were grown for 23 days total. With the use of ImageJ the fifth and sixth rosette leaves were measured and L/P ratio is calculated. Multiple seeds of WT and mutants were planted and L/P ratio was measured within all of them.</p>
+</section>
+<section id="statistical-modeling" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-modeling">Statistical Modeling</h3>
+<section id="base-visualization" class="level5">
+<h5 class="anchored" data-anchor-id="base-visualization">Base Visualization</h5>
+<p>The dataset collected above was initially visualized using boxplots to assess the distribution and variance across loss-of-function photoreceptor mutants (<a href="#fig-leaf-ratio" class="quarto-xref">Figure&nbsp;1</a>). This visualization shows us that the loss-of-function PHYB mutant has the lowest leaf growth (L/P ratio) while the other mutant are generally similar as they have slightly greater leaf growth compaed to the WT.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>base_d <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/revised_data.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Base Viz</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>base_viz <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> base_d,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> Mutant,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> <span class="st">`</span><span class="at">L/P</span><span class="st">`</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">color =</span> Mutant)) <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>base_viz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-leaf-ratio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-leaf-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Paper_files/figure-html/fig-leaf-ratio-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-leaf-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Lamina-to-Petiole(L/P) ratios across loss-of-function photoreceptor mutants in <em>Arabadopsis thaliana</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-model" class="level5">
+<h5 class="anchored" data-anchor-id="linear-model">Linear Model</h5>
+<p>Linear model is used here to test whether any of the photoreceptor mutants differ significantly from the wild type. A categorical model was created with many levels to test this: <span class="math display">\[log(L/P_i) = \beta_0 + \sum_{j=1}^{k} \beta_j \cdot \text{Mutant}_{ij} + \varepsilon_i\]</span></p>
+<p>The model was ran through assumption checks to verify the validity of the model in a biological system (<a href="#fig-assumptions" class="quarto-xref">Figure&nbsp;2</a>). Through assumption checks and breaking down each plots separately it can verify the validity on different levels of the model. First, the posterior predictive check shows that observed data is in line with the model-predicted data. The next check that majorly altered the model after first run of assumptions is linearity, prior to log transforming the response variable in the linear model the linearity assumptions was off of the horizontal line zero. Following the log transformation the linearity assumption was the passed with fitted values along the reference line as seen in the assumption check. The new assumption check shows the log transformation that was done to the model’s response variable helped the nonlinearity of the model. The next assumption check is homogeneity of variance to test the model’s variance, we see the line is extremely flat as well as there is symmetry of points across the reference line. Influence Observations shows some potential issues with points near the outer distance, but due to small residuals their influence is tolerable. Lastly, in the normality of residuals plots a quantile-quantile (Q-Q) plot is used to test if residuals are normal and can visualize the points along the line with little variation at the positive end.</p>
+<p>After the assumptions were met, results of the linear model can be interpreted wihtin this study(<a href="#tbl-lm" class="quarto-xref">Table&nbsp;2</a>). Interpreting it revealed that PHYB mutants show a significant reduction in L/P ratio in the estimate as well as being statistically significant due to p-value is less than 0.05. Also, seen in CRY2 on a lesser scale showing less reduction in leaf growth and less significance. The standard error in the table indicates the uncertainty around the estimate, which is not heavily prevalent in our model as shown in the results of the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base Model </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>base_d <span class="ot">&lt;-</span> base_d <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Mutant =</span> <span class="fu">factor</span>(Mutant, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"WT"</span>, <span class="fu">setdiff</span>(<span class="fu">unique</span>(Mutant), <span class="st">"WT"</span>))))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>lm_model <span class="ot">&lt;-</span>  <span class="fu">lm</span>(<span class="fu">log</span>(<span class="st">`</span><span class="at">L/P</span><span class="st">`</span>) <span class="sc">~</span> Mutant, <span class="at">data =</span> base_d)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Assumptions </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(lm_model) <span class="sc">|&gt;</span> <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-assumptions" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Paper_files/figure-html/fig-assumptions-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-assumptions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Assumptions of Categorical Linear Model
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-tbl.cap="Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm_model)[, <span class="fu">c</span>(<span class="st">"term"</span>,<span class="st">"estimate"</span>, <span class="st">"std.error"</span>, <span class="st">"p.value"</span>)] <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="fu">ifelse</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.001</span>, <span class="fu">format.pval</span>(p.value, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">eps =</span> .Machine<span class="sc">$</span>double.eps), <span class="fu">round</span>(p.value, <span class="dv">3</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Photoreceptor  =</span> term,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Estimate</span><span class="st">`</span> <span class="ot">=</span> estimate,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="ot">=</span> std.error,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">P-value</span><span class="st">`</span> <span class="ot">=</span> p.value</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-lm-1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl.cap="Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in <em>Arabidopsis thaliana</em>
+</figcaption>
+<div aria-describedby="tbl-lm-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Photoreceptor</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: left;">P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">0.429</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: left;">&lt; 2e-16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MutantPHYA</td>
+<td style="text-align: right;">-0.032</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">0.139</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MutantPHYB</td>
+<td style="text-align: right;">-0.638</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">&lt; 2e-16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MutantCRY1</td>
+<td style="text-align: right;">-0.106</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">5.5e-06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MutantCRY2</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">0.41</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="post-hoc-test-tukeys-test" class="level5">
+<h5 class="anchored" data-anchor-id="post-hoc-test-tukeys-test">Post-Hoc Test (Tukey’s Test)</h5>
+<p>As a post-hoc test, Tukey’s Test was preformed on the linear model to create pairwise comparisons between different levels of mean mutant photoreceptors and the mean WT, this determines the significant difference between the conditions(<a href="#fig-tukeys" class="quarto-xref">Figure&nbsp;3</a>). In this case we will focus on the comparisons between mutant photoreceptors and WT as the will show us the difference of the mutant means compared to natural growth. In the visualization the PHYB mutant has the greatest difference in mean levels, with CRY1 being the next greatest but no where near the amount of PHYB. The rest of the photoreceptors compared to the WT have no significant difference on leaf growth, thus meaning there is not enough statistical difference to verify their difference on leaf growth.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Anova_mod <span class="ot">&lt;-</span> <span class="fu">aov</span>(lm_model)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Tukey_mod <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(<span class="at">x =</span> Anova_mod, <span class="st">"Mutant"</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"navy"</span>, <span class="st">"red"</span>, <span class="st">"orange"</span>, <span class="st">"navy"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"black"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">1</span>)<span class="sc">+</span>.<span class="dv">1</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Tukey_plot <span class="ot">&lt;-</span> <span class="fu">plot</span>(Tukey_mod, <span class="at">las=</span><span class="dv">1</span>, <span class="at">col=</span>my_colors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-tukeys" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tukeys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Paper_files/figure-html/fig-tukeys-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tukeys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Pairwise Comparisons of Leaf Growth Across Photoreceptor Mutants in Arabidopsis thaliana
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="aic-model-averaging-final-visualization" class="level4">
+<h4 class="anchored" data-anchor-id="aic-model-averaging-final-visualization">AIC Model Averaging (Final Visualization)</h4>
+<p>The final step taken to reach our best visualization was comparing and averaging different models to create a better trade-off between model fit and complexity.The Akaike Information Criterion (AIC) model averaging is used to produce the final visualization representing the effect of loss-of-function photoreceptor mutant on leaf growth (<a href="#fig-AIC" class="quarto-xref">Figure&nbsp;4</a>). Models plausible in this case are the null model or the mean only model and the linear model created previously. Examining the AIC values that indicate the “best model” were skipped due to the circumstances of this study, small amount of plausible models, and model averaging was proceeded which accounts for uncertainty while creating more reliable measurements to create one model. In the visualization the original observed data was plotted to reflect the accuracy of the model, we can see that the estimated points are similar to the observed points. These similar points means it shows the same results as the original data visualization, of PHYB being the most effective photoreceptor in reducing leaf growth compared to the other mutant photoreceptors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>phyto_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">L/P</span><span class="st">`</span> <span class="sc">~</span> Mutant, <span class="at">data =</span> base_d)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>phyto_mean <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="st">`</span><span class="at">L/P</span><span class="st">`</span> <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> base_d)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">aictab</span>(<span class="fu">list</span>(phyto_lm, phyto_mean), </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="st">"linear model"</span>, <span class="st">"mean only"</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">second.ord =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>mod_list <span class="ot">&lt;-</span> <span class="fu">list</span>(phyto_mean, phyto_lm)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>mod_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"mean only"</span>, <span class="st">"linear model"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>mod_names <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>avg_model <span class="ot">&lt;-</span> <span class="fu">model.avg</span>(mod_list)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Mutant =</span> <span class="fu">unique</span>(base_d<span class="sc">$</span>Mutant))</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(avg_model, <span class="at">newdata =</span> new_data, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mutant =</span> new_data<span class="sc">$</span>Mutant,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit =</span> preds<span class="sc">$</span>fit,</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> preds<span class="sc">$</span>fit <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> preds<span class="sc">$</span>se.fit,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> preds<span class="sc">$</span>fit <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> preds<span class="sc">$</span>se.fit)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>aic_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pred_df, <span class="fu">aes</span>(<span class="at">x =</span> Mutant, <span class="at">y =</span> fit, <span class="at">color =</span> <span class="st">"Predicted"</span>)) <span class="sc">+</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lower, <span class="at">ymax =</span> upper, <span class="at">color =</span> <span class="st">"Predicted"</span>), <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">data =</span> base_d, <span class="fu">aes</span>(<span class="at">x =</span> Mutant, <span class="at">y =</span> <span class="st">`</span><span class="at">L/P</span><span class="st">`</span>, <span class="at">color =</span> <span class="st">"Observed"</span>), </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Data Type"</span>,</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Observed"</span> <span class="ot">=</span> <span class="st">"skyblue"</span>, <span class="st">"Predicted"</span> <span class="ot">=</span> <span class="st">"grey40"</span>)) <span class="sc">+</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"L/P Ratio"</span>, <span class="at">x =</span> <span class="st">"Mutant"</span>) <span class="sc">+</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>aic_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-AIC" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-AIC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Paper_files/figure-html/fig-AIC-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-AIC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Observed and AIC Model-Averaged Predictions of Leaf Growth (L/P ratio) Across Photoreceptor Mutants in <em>Arabadopsis thaliana</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+</section>
+<section id="gene-expression-analyisis" class="level1">
+<h1>Gene Expression Analyisis</h1>
+<section id="questions" class="level5">
+<h5 class="anchored" data-anchor-id="questions">Questions</h5>
+<p>Questioning the effect of mutant photoreceptors on a physiological factor that is not entierely discovered, leaf growth, but what about the genotypical impact? Specifically in Phytochrome B as it has the highest impact on leaf growth.</p>
+</section>
+<section id="data-collection-1" class="level5">
+<h5 class="anchored" data-anchor-id="data-collection-1">Data Collection</h5>
+<p>Data retrieved from Shanghai University in Shanghai, China where scientist measured WT and PHYB mutant seedlings of <em>A. thaliana</em> under <span class="math inline">\(60 \mu\text{mol m}^{-2}\text{ s}^{-1}\)</span> red light for 4.5 days as PHYB is the main receptor in red light responses<span class="citation" data-cites="GSE101875">(<a href="#ref-GSE101875" role="doc-biblioref">Zhang, Yang, &amp; Zheng, 2017</a>)</span>. mRNA is then sequenced from each sample and the genes regulated by PHYB are analyzed by read counts and normalized expression levels (Reads Per Kilobase per Million mapped reads (RPKM)) to present us with the dataset.</p>
+</section>
+<section id="methods-limma" class="level5">
+<h5 class="anchored" data-anchor-id="methods-limma">Methods (limma)</h5>
+<p>limma is an r package from Bioconductor used for the analysis of gene expression data<span class="citation" data-cites="ritchie2015limma">(<a href="#ref-ritchie2015limma" role="doc-biblioref">Ritchie et al., 2015</a>)</span>. Specifically within this study, limma is used to assess differential expression between WT and PHYB to determine the significantly differential expressed genes<span class="citation" data-cites="phipson2016robust">(<a href="#ref-phipson2016robust" role="doc-biblioref">Phipson, Lee, Majewski, Alexander, &amp; Smyth, 2016</a>)</span>. MA plot is the common way to visualize the results of differential gene expression analysis, where M signifies the log ratio of how much a gene’s expression has changed between the two treatments and A represent the mean average gene expression level across all samples. In the visualization the blue circles represent the genes that are classified significantly different, grey points are likely background genes, and black points are not significantly differential expressed with all groups based on adjusted p-values (<a href="#fig-limma" class="quarto-xref">Figure&nbsp;5</a>). With the visualization comparison of the spread of genes begins at low expression levels and high expression levels, giving us more insight on the significant genes impacted. Overall, the visualization determined that PHYB affects gene expression in both directions by likely reshaping the regulatory networks and biological mechanisms.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(limma)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>exprs <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/expression_matrix.csv"</span>, <span class="at">header=</span><span class="cn">TRUE</span>, <span class="at">row.names=</span><span class="dv">1</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>exprs <span class="ot">&lt;-</span> exprs[, <span class="fu">c</span>(<span class="st">"RPKM_PhyB"</span>, <span class="st">"RPKM_WT"</span>)]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(exprs) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PhyB"</span>, <span class="st">"WT"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>exprs <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(exprs)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sample =</span> <span class="fu">c</span>(<span class="st">"PhyB"</span>, <span class="st">"WT"</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Genotype =</span> <span class="fu">c</span>(<span class="st">"PhyB"</span>, <span class="st">"WT"</span>),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Ratio =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>))  <span class="co"># no phenotype data</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(metadata) <span class="ot">&lt;-</span> metadata<span class="sc">$</span>Sample</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>metadata<span class="sc">$</span>Genotype <span class="ot">&lt;-</span> <span class="fu">factor</span>(metadata<span class="sc">$</span>Genotype)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>exprs <span class="ot">&lt;-</span> <span class="fu">log2</span>(exprs <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> Genotype, <span class="at">data=</span>metadata)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(design) <span class="ot">&lt;-</span> <span class="fu">levels</span>(metadata<span class="sc">$</span>Genotype)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lmFit</span>(exprs, design)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>contrast.matrix <span class="ot">&lt;-</span> <span class="fu">makeContrasts</span>(<span class="at">PhyB_vs_WT =</span> PhyB <span class="sc">-</span> WT, <span class="at">levels=</span>design)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">contrasts.fit</span>(fit, contrast.matrix)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> fit2<span class="sc">$</span>coefficients</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>log2fc <span class="ot">&lt;-</span> <span class="fu">log2</span>(exprs[, <span class="st">"PhyB"</span>]) <span class="sc">-</span> <span class="fu">log2</span>(exprs[, <span class="st">"WT"</span>])</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gene =</span> <span class="fu">rownames</span>(exprs),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">log2FoldChange =</span> log2fc</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(results[<span class="fu">order</span>(<span class="sc">-</span><span class="fu">abs</span>(results<span class="sc">$</span>log2FoldChange)), ])</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> (<span class="fu">log2</span>(exprs[, <span class="st">"PhyB"</span>]) <span class="sc">+</span> <span class="fu">log2</span>(exprs[, <span class="st">"WT"</span>])) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">log2</span>(exprs[, <span class="st">"PhyB"</span>]) <span class="sc">-</span> <span class="fu">log2</span>(exprs[, <span class="st">"WT"</span>])</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>limma_plot <span class="ot">&lt;-</span> <span class="fu">plot</span>(A, M, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">0.6</span>, <span class="at">main=</span><span class="st">"MA Plot of PhyB constrasted to WT"</span>, </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Average log2 Expression (A)"</span>, <span class="at">ylab=</span><span class="st">"log2 Fold Change (M)"</span>,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">ifelse</span>(<span class="fu">abs</span>(M) <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"gray"</span>, <span class="st">"black"</span>))</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>highlight_genes <span class="ot">&lt;-</span> <span class="fu">abs</span>(M) <span class="sc">&gt;</span> <span class="dv">2</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(A[highlight_genes], M[highlight_genes], <span class="at">col=</span><span class="st">"skyblue"</span>, <span class="at">pchisq=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">1.2</span>)</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>limma_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-limma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-limma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Paper_files/figure-html/fig-limma-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-limma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: MA Plot: Differential Expression in PHYB Mutant vs.&nbsp;Wild Type in <em>Arabidopsis thaliana</em>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<section id="phenotypic-data" class="level5">
+<h5 class="anchored" data-anchor-id="phenotypic-data">Phenotypic Data</h5>
+<p>In the phenotypic data analysis where a categorical linear model was used, alongside post-hoc tests consisting of Tukeys Test while also applying model selection criterion AIC, a lot was discovered about the loss-of-function photoreceptor mutant effect on leaf growth in <em>Arabidopsis thaliana</em>. After the model and model selection processes it can be determined that PHYB mutants showed a significant reduction in lamina-to-petiole ratio compared to the wild type seedlings confirmed by the p-value that is less than 0.01. It was also discovered that CRY1 may exhibit difference between the WT after post-hoc tests and model averaging, while CRY2 and PHYA are not significantly different to the WT if looking at the visualizations plus it is confirmed by the p-values. Tukey’s Test confirmed that PHYB is the most divergent mutant photoreceptor and CRY1 is the next most divergent while CRY2 and PHY1 are not divergent from the WT.</p>
+</section>
+<section id="assumptions" class="level5">
+<h5 class="anchored" data-anchor-id="assumptions">Assumptions</h5>
+<p>During these models diagnostics test were ran and assumptions were confirmed, such as the residuals (Q-Q plot) which appeared normally distributed or the AIC values showing that categorical linear model is highly favored in model fit and complexity over the null model.</p>
+</section>
+<section id="gene-expression-data" class="level5">
+<h5 class="anchored" data-anchor-id="gene-expression-data">Gene Expression Data</h5>
+<p>When analyzing gene expression data, specifically in the MA plot, it shows clear differential expression between PHYB and WT. Gene Expression data allowed for the discovery of which specific genes are significant when PHYB is not present and the magnitude of the difference to WT(positive or negative), as well as the average they are expressed amongst both condition infering impact of significant gene.</p>
+<hr>
+</section>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<p>The study was aimed to dissect the contributions of individual photoreceptors to leaf morphology. Overall, the data from the study strongly supports the hypothesis that PHYB positively regulates leaf growth in <em>A. thaliana</em> measured by lamina-to-petiole ratio,seen in linear model, model averaging, and post-hoc tests. In contrast, CRY2 and PHYA do not contribute significantly, while CRY1 may play a minor role in leaf growth. CRY1’s modest statistically significant decrease in L/P ratio aligns with the known interactions between cryptochromes and phytochromes signaling in leaf expansion(<span class="citation" data-cites="Whitelam1997">Whitelam &amp; Devlin (<a href="#ref-Whitelam1997" role="doc-biblioref">1997</a>)</span>). These interactions are the described as the balance of blue and red light for influence of whether a leaf expands broadly or if the petiole elongate, due to photoreceptor pathways converge on shared transcription factors(PIFs or growth-regulated hormones) to create coordinated developmental outcomes.</p>
+<p>The gene expression analysis of PHYB regulated genes supported the phenotypic data we discovered. PHYB had multiple significantly expressed genes compared to the WT, most likely due to the altered expression pattern of PIF regulated genes and hormone signaling in PHYB mutants. The gene expression analysis highlights the loss-of-function PHYB is likely impacting a mechanism for morphological changes rather than a direct physiological change as there is both up regulation and down regulation of the differently expressed genes (DEGs). This agrees with the model of PHYB as a key role in hormone and light signaling in leaf development(<span class="citation" data-cites="Leivar2011">Leivar &amp; Monte (<a href="#ref-Leivar2011" role="doc-biblioref">2011</a>)</span>). Differential expression data analysis combined with the physiological linear model suggest the role of PHYB in multiple downstream genes that are altered in PHYB’s absences.</p>
+<hr>
+</section>
+<section id="conclusion-further-exploration" class="level1">
+<h1>Conclusion &amp; Further Exploration</h1>
+<p>The investigation of the <em>Arabidopsis thaliana</em> loss-of-function photoreceptor mutants demonstrate that PHYB plays a major role in regulation of leaf growth under light conditions, proven by the significantly reduced lamina-to-petiole ratio. The subtle significance of the CRY1 mutant suggests that while CRY1 may contribute to plant development, its role in leaf growth is minor or reduced by other pathways. Utility of limma used to identify differently expressed genes (DEGs) associated with PHYB and discovered a significant differences in DEGs between PHYB and WT.</p>
+<p>If we were able to combine the two forms of data we collected, physiological and genotypical, we would be able to explore more about the connection between these DEGs and key physiological traits such as leaf growth. For further exploration an experiment can be designed where L/P ratio, hormone presences(auxin, gibberellins, and cytokinins) and gene expression in mutant <em>A. thaliana</em> mutant photoreceptors are all measured an analyzed. Another adjustment that can be done to understand PHYB affects more mechanistically is the use of double mutants such as CRY1PHYB, as we know that there are strong interactions between cryptochromes and phytochromes. With this data more accurate models can be created using mixed models or generalized linear models to better understand the mechanism that PHYB impact. This also opens up the door to more options in limma for visualization, such as a volcano plot created to show correlation between top DEGs and physiological measurements. Overall, this experiment will open up the conversation more to the impacts of photoreceptors on other photoreceptors and continue to give us more explanation of the Phytochrome B promoting pathway in <em>A. thaliana</em> that impacts hormones, gene expression, other receptors, and etc.</p>
+<div class="cell" data-tbl.cap="Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm_model)[, <span class="fu">c</span>(<span class="st">"term"</span>,<span class="st">"estimate"</span>, <span class="st">"std.error"</span>, <span class="st">"p.value"</span>)] <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p.value =</span> <span class="fu">ifelse</span>(p.value <span class="sc">&lt;</span> <span class="fl">0.001</span>, <span class="fu">format.pval</span>(p.value, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">eps =</span> .Machine<span class="sc">$</span>double.eps), <span class="fu">round</span>(p.value, <span class="dv">3</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Photoreceptor  =</span> term,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Estimate</span><span class="st">`</span> <span class="ot">=</span> estimate,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Std. Error</span><span class="st">`</span> <span class="ot">=</span> std.error,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">P-value</span><span class="st">`</span> <span class="ot">=</span> p.value</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">3</span>, <span class="at">caption =</span> <span class="st">"Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-lm" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl.cap="Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in *Arabidopsis thaliana*">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Linear Model Estimates of Photoreceptor Mutant Effects on log(Lamina-to-Petiole) Ratio in <em>Arabidopsis thaliana</em>
+</figcaption>
+<div aria-describedby="tbl-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Photoreceptor</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Std. Error</th>
+<th style="text-align: left;">P-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">0.429</td>
+<td style="text-align: right;">0.015</td>
+<td style="text-align: left;">&lt; 2e-16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MutantPHYA</td>
+<td style="text-align: right;">-0.032</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">0.139</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MutantPHYB</td>
+<td style="text-align: right;">-0.638</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">&lt; 2e-16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MutantCRY1</td>
+<td style="text-align: right;">-0.106</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">5.5e-06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MutantCRY2</td>
+<td style="text-align: right;">0.017</td>
+<td style="text-align: right;">0.021</td>
+<td style="text-align: left;">0.41</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Beatrice2022" class="csl-entry" role="listitem">
+Beatrice, P., Chiatante, D., Scippa, G. S., &amp; Montagnoli, A. (2022). Photoreceptors’ gene expression of arabidopsis thaliana grown with biophilic LED-sourced lighting systems. <em>PLOS ONE</em>, <em>17</em>(6).
+</div>
+<div id="ref-Leivar2011" class="csl-entry" role="listitem">
+Leivar, P., &amp; Monte, E. (2011). PIFs: Systems integrators in plant development. <em>The Plant Cell</em>.
+</div>
+<div id="ref-Li2022" class="csl-entry" role="listitem">
+Li, Y., Kang, X., Zhou, J., Zhao, Z., Zhang, S., Bu, H., &amp; Qi, W. (2022). <a href="https://doi.org/10.1093/aob/mcac112">Geographic variation in the petiole–lamina relationship of 325 eastern qinghai–tibetan woody species: Analysis in three dimensions</a>. <em>Annals of Botany</em>, <em>130</em>(5), 603–614.
+</div>
+<div id="ref-phipson2016robust" class="csl-entry" role="listitem">
+Phipson, B., Lee, S., Majewski, I. J., Alexander, W. S., &amp; Smyth, G. K. (2016). <a href="https://doi.org/10.1214/16-AOAS920">Robust hyperparameter estimation protects against hypervariable genes and improves power to detect differential expression</a>. <em>Annals of Applied Statistics</em>, <em>10</em>(2), 946–963.
+</div>
+<div id="ref-ritchie2015limma" class="csl-entry" role="listitem">
+Ritchie, M. E., Phipson, B., Wu, D., Hu, Y., Law, C. W., Shi, W., &amp; Smyth, G. K. (2015). <a href="https://doi.org/10.1093/nar/gkv007">Limma powers differential expression analyses for RNA-sequencing and microarray studies</a>. <em>Nucleic Acids Research</em>, <em>43</em>(7), e47.
+</div>
+<div id="ref-Whitelam1997" class="csl-entry" role="listitem">
+Whitelam, G. C., &amp; Devlin, P. F. (1997). <a href="https://doi.org/10.1016/S1360-1385(97)90051-2">Light signalling in arabidopsis</a>. <em>Trends in Plant Science</em>, <em>2</em>(10), 383–387.
+</div>
+<div id="ref-GSE101875" class="csl-entry" role="listitem">
+Zhang, Y., Yang, C.-C., &amp; Zheng, C. (2017). Transcription profiling by array of arabidopsis wild type and phyB mutant under red light. <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE101875" class="uri">https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE101875</a>; NCBI Gene Expression Omnibus.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
